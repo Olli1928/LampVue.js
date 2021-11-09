@@ -1,5 +1,4 @@
 //const baseUri = "http://localhost:3000/cars/"
-const baseUri ="https://webapicar20190326034339.azurewebsites.net/api/cars"
 Vue.createApp({
     data() {
         return {
@@ -85,7 +84,7 @@ Vue.createApp({
              console.log("status code: "+ response.status );
 
              //add the returning data from the webservice to the variable posts
-             this.carlists = response.data;
+             //this.carlists = response.data;
              this.status = response.status;
               
              console.log("length of cars array " + this.carlists.length)
