@@ -7,11 +7,12 @@ Vue.createApp({
             carslist: [],
             error: null,
             statuscode:null,
-            userId: "",
+            getCarId: "",
             carId:8,
             carVendor:"Ford",
             carModel:"Mustang",
             carPrice:200000,
+            deletecarId:1
         }
     },
      created() {
@@ -73,7 +74,6 @@ Vue.createApp({
               this.error = ex.message
               console.log("Error:" + this.error);
             })      
-
         },
         PostCar(){
             axios.post(baseUri,{"id":this.carId,"vendor":this.carVendor,"model":this.carModel,"price":this.carPrice})
@@ -95,7 +95,28 @@ Vue.createApp({
               this.error = ex.message
               console.log("Error:" + this.error);
             })    
+        },
+        deleteByCarId(id){
+            //axios call that returns the items from a specified user 
+            axios.delete(baseUri + "/"  + id)
+            .then(response => {
+            
+            console.log("URI: " + baseUri + "?id=" +id)
 
+             console.log("in function getByCarId");
+             console.log("status code: "+ response.status );
+
+             //add the returning data from the webservice to the variable posts
+             this.carslist = response.data;
+             this.status = response.status;
+              
+             console.log("length of the carlists array " + this.carslist.length)
+            })
+            .catch(error = (ex) => {
+              this.carslist = []
+              this.error = ex.message
+              console.log("Error:" + this.error);
+            })      
         }
         
        

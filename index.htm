@@ -24,8 +24,8 @@
 
         <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
         <br>
-        <button class="btn btn-primary" v-on:click="getByCarId(userId)">Get By carId</button>
-        <input v-model.number="userId" placeholder="User Id" type="number">
+        <button class="btn btn-primary" v-on:click="getByCarId(getCarId)">Get By carId</button>
+        <input v-model.number="getCarId" placeholder="User Id" type="number">
         <br>
         <button class="btn btn-primary" v-on:click="getAllCars">Get All</button>
         <br>
@@ -39,10 +39,13 @@
         <br>
         <input v-model.number="carPrice" placeholder="Car Price" type="number">
         <br>
-
+        <button class="btn btn-primary" v-on:click="deleteByCarId(deletecarId)">Delete car</button>
+        <br>
+        <input v-model.number="deletecarId" placeholder="deleteCar Id" type="number">
+        <br>
 
         <div v-if="error" style="color: red">error: {{error}}</div>
-        <div v-if="statuscode" style="color: green">Statuscode: {{error}}</div>
+        <div style="color: green">Statuscode: {{status}}</div>
         <h1>Car List</h1>
 
 
