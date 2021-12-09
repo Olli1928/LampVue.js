@@ -1,4 +1,4 @@
-//const baseUri = "http://localhost:3000/cars/"
+const baseUri = "https://webapicar20190326034339.azurewebsites.net/api/cars"
 Vue.createApp({
     data() {
         return {
@@ -54,16 +54,19 @@ Vue.createApp({
         },
         getByCarId(id){
             //axios call that returns the items from a specified user 
-            axios.get(baseUri + "?id="  + id)
+            uri = baseUri +"/"+id
+            axios.get(uri)
             .then(response => {
             
-            console.log("URI: " + baseUri + "?id=" +id)
+            console.log("Uri: " + uri)
 
              console.log("in function getByUserId");
              console.log("status code: "+ response.status );
 
              //add the returning data from the webservice to the variable posts
-             this.carslist = response.data;
+            //  this.carslist = response.data;
+             this.carslist = [];
+             this.carslist.push(response.data);
              this.status = response.status;
               
              console.log("length of the carlists array " + this.carslist.length)
@@ -96,11 +99,12 @@ Vue.createApp({
             })    
         },
         deleteByCarId(id){
+            uri = baseUri +"/"+id
             //axios call that returns the items from a specified user 
-            axios.delete(baseUri + "/"  + id)
+            axios.delete(uri)
             .then(response => {
             
-            console.log("URI: " + baseUri + "?id=" +id)
+            console.log("Uri: " + uri)
 
              console.log("in function getByCarId");
              console.log("status code: "+ response.status );
