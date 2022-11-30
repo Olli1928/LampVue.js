@@ -5,13 +5,7 @@ Vue.createApp({
             nyliste:[],
             carslist: [],
             error: null,
-            statuscode:null,
-            getCarId: "",
-            carId:8,
-            carVendor:"Ford",
-            carModel:"Mustang",
-            carPrice:200000,
-            deletecarId:1
+            
         }
     },
      created() {
