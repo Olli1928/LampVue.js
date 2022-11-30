@@ -9,52 +9,39 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <title>Cars, Vue3 + REST</title>
+    <title>Lamps, Vue3 + REST</title>
     <style>
         button {
             margin: 5px 5px 5px 5px
         }
     </style>
 </head>
-
+<h1>Posts, Vue3 + REST</h1>
 <body>
-    <h1>Posts, Vue3 + REST</h1>
+    <h1>Lamps</h1>
 
     <div id="app">
 
         <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
         <br>
-        <button class="btn btn-primary" v-on:click="getByCarId(getCarId)">Get By carId</button>
-        <input v-model="getCarId" placeholder="User Id" type="number">
+        <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+        <input v-model="getLampId" placeholder="Lamp Id" type="number">
         <br>
-        <button class="btn btn-primary" v-on:click="getAllCars">Get All</button>
+        <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
         <br>
-        <button class="btn btn-primary" v-on:click="PostCar">Add</button>
-        <br>
-        <input v-model="carId" placeholder="Car Id" type="number">
-        <br>
-        <input v-model="carVendor" placeholder="Car Vendor" type="string">
-        <br>
-        <input v-model="carModel" placeholder="Car Model" type="string">
-        <br>
-        <input v-model="carPrice" placeholder="Car Price" type="number">
-        <br>
-        <button class="btn btn-primary" v-on:click="deleteByCarId(deletecarId)">Delete car</button>
-        <br>
-        <input v-model="deletecarId" placeholder="deleteCar Id" type="number">
-        <br>
+        
 
         <div v-if="error" style="color: red">error: {{error}}</div>
         <div style="color: green">Statuscode: {{statuscode}}</div>
         <h1>Car List</h1>
 
 
-        <ul v-if="carslist.length > 0">
-            <li v-for="car in carslist" v-bind:key="car.id">
-                Vendor {{car.vendor}}: {{car.model}} : id {{car.id}}
+        <ul v-if="Lamplist.length > 0">
+            <li v-for="Lamp in Lamplist" v-bind:key="Lamp.Id">
+               id {{Lamp.id}}
             </li>
         </ul>       
-        <div v-else style="font-style: italic;">No cars to show</div>
+        <div v-else style="font-style: italic;">No Lamps to show</div>
     </div>
 
     <script src="js/index.js"></script>

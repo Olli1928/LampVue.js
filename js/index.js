@@ -1,26 +1,27 @@
-const baseUri = "https://webapicar20190326034339.azurewebsites.net/api/cars"
+const baseUri = "https://localhost:7116/api/Lamp"
 Vue.createApp({
     data() {
         return {
             nyliste:[],
-            carslist: [],
+            Lamplist: [],
             error: null,
-            
+            statuscode:null,
+            getLampId:""
         }
     },
      created() {
         // created() is a life cycle method, not an ordinary method
         // created() is called automatically when the page is loaded
         console.log("created method called")
-        this.getAllCars()
+        this.getAlllamps()
     },
     methods: {
         cleanList() {
-            this.carslist = [];
+            this.Lamplist = [];
             this.error = null;
-            console.log("count cars : " + this.carslist.length);
+            console.log("count cars : " + this.Lamplist.length);
         },
-        //Read this for an example: https://vuejs.org/v2/cookbook/using-axios-to-consume-apis.html
+        
          getAllCars() {
              //axios call that returns all the elements from the webservice
             axios.get(baseUri)
@@ -34,21 +35,21 @@ Vue.createApp({
              this.carslist = response.data;
              this.status = response.status;
               
-             console.log("length of the carlist array " + this.carslist.length)
+             console.log("length of the Lamplist array " + this.Lamplist.length)
 
 
             })
             .catch(error = (ex) => {
               //resultElement.innerHTML = generateErrorHTMLOutput(error);
-              this.carslist = []
+              this.Lamplist = []
                this.error = ex.message
               console.log("Error:" + this.error);
             })      
             
         },
-        getByCarId(id){
+        getByLampId(id){
             //axios call that returns the items from a specified user 
-            uri = baseUri +"/"+id
+            uri = baseUri +/id/+id
             axios.get(uri)
             .then(response => {
             
@@ -58,12 +59,12 @@ Vue.createApp({
              console.log("status code: "+ response.status );
 
              //add the returning data from the webservice to the variable posts
-            //  this.carslist = response.data;
-             this.carslist = [];
-             this.carslist.push(response.data);
+            //  this.Lamplist = response.data;
+             this.Lamplist = [];
+             this.Lamplist.push(response.data);
              this.status = response.status;
               
-             console.log("length of the carlists array " + this.carslist.length)
+             console.log("length of the Lamplists array " + this.Lamplist.length)
             })
             .catch(error = (ex) => {
               this.carslist = []
@@ -71,51 +72,7 @@ Vue.createApp({
               console.log("Error:" + this.error);
             })      
         },
-        PostCar(){
-            axios.post(baseUri,{"id":this.carId,"vendor":this.carVendor,"model":this.carModel,"price":this.carPrice})
-            .then(response => {
-            
-            console.log("URI: ")
-
-             console.log("in post cars");
-             console.log("status code: "+ response.status );
-
-             //add the returning data from the webservice to the variable posts
-             //this.carlists = response.data;
-             this.status = response.status;
-              
-             console.log("length of cars array " + this.carlists.length)
-            })
-            .catch(error = (ex) => {
-              this.carlists = []
-              this.error = ex.message
-              console.log("Error:" + this.error);
-            })    
-        },
-        deleteByCarId(id){
-            uri = baseUri +"/"+id
-            //axios call that returns the items from a specified user 
-            axios.delete(uri)
-            .then(response => {
-            
-            console.log("Uri: " + uri)
-
-             console.log("in function getByCarId");
-             console.log("status code: "+ response.status );
-
-             //add the returning data from the webservice to the variable posts
-             this.carslist = response.data;
-             this.status = response.status;
-              
-             console.log("length of the carlists array " + this.carslist.length)
-            })
-            .catch(error = (ex) => {
-              this.carslist = []
-              this.error = ex.message
-              console.log("Error:" + this.error);
-            })      
-        }
-        
+           
        
        
     }
