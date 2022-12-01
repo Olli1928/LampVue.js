@@ -1,4 +1,4 @@
-const baseUri = "https://localhost:7116/api/Lamp"
+const baseUri = "https://lamprestapi.azurewebsites.net/api/Lamp"
 Vue.createApp({
     data() {
         return {
