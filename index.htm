@@ -20,29 +20,37 @@
 <body>
     <h1>Lamps</h1>
 
-    <div id="app">
-
-        <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
-        <br>
-        <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
-        <input v-model="getLampId" placeholder="Lamp Id" type="number">
-        <br>
-        <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
-        <br>
+    
         
-        <div v-if="error" style="color: red">error: {{error}}</div>
-        <div style="color: green">Statuscode: {{statuscode}}</div>
-        <h1>Lamp List</h1>
+    
+        
+        <div id="app"> 
 
+           
+            <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
+            <br>
+            <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+            <input v-model="getLampId" placeholder="Lamp Id" type="number">
+            <br>
+            <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
+            
+            
+    
+            <div v-if="error" style="color: red">error: {{error}}</div>
+            <div style="color: green">Statuscode: {{statuscode}}</div>
+            <h1>Lamp List</h1>
+    
+    
+            <ul v-if="Lamplist.length > 0">
+                <li v-for="Lamp in Lamplist" v-bind:key="Lamp.id">
+                    id {{Lamp.id}}
+                </li>
+            </ul>       
+            <div v-else style="font-style: italic;">No Lamps to show</div>
+        </div>
 
-        <ul v-if="Lamplist.length > 0">
-            <li v-for="Lamp in Lamplist" v-bind:key="Lamp.Id">
-               id {{Lamp.id}}
-            </li>
-        </ul>       
-        <div v-else style="font-style: italic;">No Lamps to show</div>
-    </div>
-
+   
+   
     <script src="js/index.js"></script>
 </body>
 
