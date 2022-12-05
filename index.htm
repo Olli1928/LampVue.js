@@ -15,43 +15,125 @@
             margin: 5px 5px 5px 5px
         }
     </style>
+
+
 </head>
+<br>
+<body style="background-color: lightblue;">
+  <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
+    <div class="form-outline">
+      <input type="name" id="form1" class="form-control" placeholder="Devicenavn"/>
+    </div>
+    <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+  </div>
 
-<body>
-    <h1>Lamps</h1>
+    <div class="container py-5 h-100">
+  
+        <div class="row d-flex justify-content-center d-flex align-items-center h-100">
+          <div class="col-md-8 col-lg-6 col-xl-4">
+    
+            <div class="card" style="color: #4B515D; border-radius: 35px;">
+              <div class="card-body p-4">
+    
+                <div class="d-flex">
+                  <h6 class="flex-grow-1">BY-NAVN-(Copenhagen)</h6>
+                  <h6>DATETIME NU-(15:07)</h6>
+                </div>
+    
+                <div class="d-flex flex-column text-center mt-5 mb-4">
+                  <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 0 kWh </h6>
+                  <span class="small" style="color: #868B94">Phillips HUe</span>
+                </div>
+    
+                <div class="d-flex align-items-center">
+                  <div class="flex-grow-1" style="font-size: 1rem;">
+                    <div> <img src="\Billeder\sunrise.png"
+                      width="35px"> <span class="ms-1"> 7:05</span>
+                    </div>
+                    <br>
+                    <div> <img src="\Billeder\sunset.png"
+                      width="38px"><span class="ms-1"> 16:13 </span>
+                    </div>
+                    <br>
+                    <div> <img src="Billeder\stopwatch.png"
+                      width="35px"><span class="ms-1"> 0.2h </span>
+                    </div>
+                  </div>
+                  <div>
+                      <img src="\Billeder\sun.png"
+                        width="100px">
+                    </div>
+                </div>
+    
+              </div>
+            </div>
+    
+          </div>
+        </div>   
+      </div>
+        <div>
+      
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+      
+              <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
+                <div class="form-outline">
+                  <input type="name" id="form1" class="form-control" placeholder="By"/>
+                </div>
+                <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Søg</button>
+              </div>
+              <br>
 
-    
-        
-    
-        
-        <div id="app"> 
-
-           
-            <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
-            <br>
-            <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
-            <input v-model="getLampId" placeholder="Lamp Id" type="number">
-            <br>
-            <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
-            
-            
-    
-            <div v-if="error" style="color: red">error: {{error}}</div>
-            <div style="color: green">Statuscode: {{statuscode}}</div>
-            <h1>Lamp List</h1>
-    
-    
-            <ul v-if="Lamplist.length > 0">
-                <li v-for="Lamp in Lamplist" v-bind:key="Lamp.id">
-                    id {{Lamp.id}}
-                </li>
-            </ul>       
-            <div v-else style="font-style: italic;">No Lamps to show</div>
+              <div class="card shadow-0 border">
+                <div class="card-body p-4">
+      
+                  <h4 class="mb-1 sfw-normal">Copenhagen</h4>
+                  <h6> 9:42</h6>
+                  <br>
+                  <p class="mb-2">Nuværende temperatur: <strong>-1°C</strong></p>
+                  <p>Sigtbarhed: <strong>5200 meter</strong></p>
+                  <p>Solopgang: <strong>7:05</strong>, Solnedgang: <strong>16:13</strong></p>
+      
+                  <div class="d-flex flex-row align-items-center">
+                    <p class="mb-0 me-4">Spredte byger</p>
+                    <i class="fas fa-cloud fa-3x" style="color: #eee;"></i>
+                  </div>
+      
+                </div>
+              </div>
+      
+            </div>
+          </div>
+      
         </div>
 
+    <h1>Lamps</h1>
+    
+<div id="app"> 
+
+          <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
+          <br>
+          <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+          <input v-model="getLampId" placeholder="Lamp Id" type="number">
+          <br>
+          <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
+          
+          <div v-if="error" style="color: red">error: {{error}}</div>
+          <div style="color: green">Statuscode: {{statuscode}}</div>
+          <h1>Lamp List</h1>
+  
+          <ul v-if="Lamplist.length > 0">
+              <li v-for="Lamp in Lamplist" v-bind:key="Lamp.id">
+                  id {{Lamp.id}}
+              </li>
+          </ul>       
+          <div v-else style="font-style: italic;">No Lamps to show</div>
+      </div>
+  
    
-   
-    <script src="js/index.js"></script>
+    <script src="js/index.js"></script>  
+        
+        
 </body>
 
 </html>
