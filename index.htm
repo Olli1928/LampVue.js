@@ -70,11 +70,7 @@
   </div>   
 </div>
         
-
-
-<div>
-  <div class="row d-flex justify-content-center align-items-center h-100">
-    <div class="col-md-8 col-lg-6 col-xl-4">
+    
       <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
         <div class="form-outline">
           <input type="text" id="form1" class="form-control" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo"/>
@@ -82,11 +78,10 @@
         <button class="btn btn-primary" @click="GetWeatherInfo(searchedCityName)">Søg</button>
       </div>
       <br>
-    </div>
+    
     <h6>{{error}}</h6>
     
     <div class="container py-5 h-100" v-show="showWeatherBox">
-        
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-8 col-lg-6 col-xl-4">
       
@@ -129,9 +124,7 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-</div>
+    </div> 
   <script src="js/index.js"></script>      
 </body>
 
