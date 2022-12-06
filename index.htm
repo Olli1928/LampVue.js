@@ -120,7 +120,8 @@
                       </div>
                     </div>
                     <div>
-                      <img :src="moonImagePath" width="100">
+                      <img v-if="sunrise < currentTime && currentTime < sunset" :src="sunImagePath" width="100">
+                      <img v-else :src="moonImagePath" width="100">
                     </div>
                   </div>
                 </div>
