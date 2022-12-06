@@ -12,13 +12,14 @@ Vue.createApp({
            visibility: 0,
            weatherDescription: "",
            searchedCityName: "",
-           error: "",
+           error: null,
            sunriseImagePath: 'Billeder/Sunrise.png',
            sunsetImagePath: 'Billeder/Sunset.png',
            binoImagePath: 'Billeder/binoculars.png',
            moonImagePath:'Billeder/moon.png',
            sunImagePath:'Billeder/sun.png',
            stopwatchImagePath: 'Billeder/stopwatch.png',
+           showWeatherBox: false
 
         }
     },  
@@ -38,10 +39,19 @@ Vue.createApp({
                 this.sunset = new Date((response.data.sys.sunset + response.data.timezone) * 1000).toUTCString().slice(17,22)
                 this.visibility = response.data.visibility / 1000
                 this.weatherDescription = response.data.weather[0].description
+                this.showWeatherBox = true
+                this.error = null
             })
             .catch(error = (ex) => {
-                this.error = ex.message
-                console.log("Fejlkode:" + this.error)
+                if (searchedCityName == "") {
+                    this.error = "Indtast venligst et bynavn i feltet for at finde vejrinfo!"
+                    this.showWeatherBox = false   
+                }
+                else{
+                    this.error = "Kunne ikke finde en by med dette navn! Prøv igen!"
+                    this.showWeatherBox = false
+                }
+                console.log("Fejlkode:" + ex.message)
             })
         }
         
