@@ -32,10 +32,10 @@ Vue.createApp({
                 console.log("Status kode:" + response.status);
                 this.city = response.data.name
                 this.country = response.data.sys.country
-                this.currentTime = new Date(response.data.dt * 1000).toTimeString().slice(0,15)
+                this.currentTime = new Date((response.data.dt + response.data.timezone) * 1000).toUTCString().slice(17,22)
                 this.temp = Math.round(response.data.main.temp - 273.15)
-                this.sunrise = new Date(response.data.sys.sunrise * 1000).toTimeString().slice(0,5)
-                this.sunset = new Date(response.data.sys.sunset * 1000).toTimeString().slice(0,5)
+                this.sunrise = new Date((response.data.sys.sunrise + response.data.timezone) * 1000).toUTCString().slice(17,22)
+                this.sunset = new Date((response.data.sys.sunset + response.data.timezone) * 1000).toUTCString().slice(17,22)
                 this.visibility = response.data.visibility / 1000
                 this.weatherDescription = response.data.weather[0].description
             })
