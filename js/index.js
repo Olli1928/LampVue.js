@@ -13,9 +13,15 @@ Vue.createApp({
            weatherDescription: "",
            searchedCityName: "",
            error: "",
-           sunriseImagePath: './Billeder/Sunrise.png'
+           sunriseImagePath: 'Billeder/Sunrise.png',
+           sunsetImagePath: 'Billeder/Sunset.png',
+           binoImagePath: 'Billeder/binoculars.png',
+           moonImagePath:'Billeder/moon.png',
+           sunImagePath:'Billeder/sun.png',
+           stopwatchImagePath: 'Billeder/stopwatch.png',
+
         }
-    },
+    },  
     methods: {
         GetWeatherInfo(searchedCityName){
             console.log("In GetWeatherInfo method")
