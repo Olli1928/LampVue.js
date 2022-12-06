@@ -10,152 +10,80 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <title>Lamps, Vue3 + REST</title>
-    <style>
-        button {
-            margin: 5px 5px 5px 5px
-        }
-        
-        .well {
-    background: none;
-    height: 320px;
-}
-
-.table-scroll tbody {
-    position: absolute;
-    overflow-y: scroll;
-    height: 250px;
-}
-
-.table-scroll tr {
-    width: 100%;
-    table-layout: fixed;
-    display: inline-table;
-}
-
-.table-scroll thead > tr > th {
-    border: none;
-}
-    </style>
 
 
 </head>
 <br>
 <body style="background-color: lightblue;">
-  <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
-    <div class="form-outline">
-      <input type="name" id="form1" class="form-control" placeholder="Devicenavn"/>
-    </div>
-    <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+<div id="app">
+<div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
+  <div class="form-outline">
+    <input type="name" id="form1" class="form-control" placeholder="Devicenavn"/>
   </div>
+    <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+</div>
 
-    <div class="container py-5 h-100">
-  
-        <div class="row d-flex justify-content-center d-flex align-items-center h-100">
-          <div class="col-md-8 col-lg-6 col-xl-4">
-    
-            <div class="card" style="color: #4B515D; border-radius: 35px;">
-              <div class="card-body p-4">
-    
-                <div class="d-flex">
-                  <h6 class="flex-grow-1">BY-NAVN-(Copenhagen)</h6>
-                  <h6>DATETIME NU-(15:07)</h6>
-                </div>
-    
-                <div class="d-flex flex-column text-center mt-5 mb-4">
-                  <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 0 kWh </h6>
-                  <span class="small" style="color: #868B94">Phillips HUe</span>
-                </div>
-    
-                <div class="d-flex align-items-center">
-                  <div class="flex-grow-1" style="font-size: 1rem;">
-                    <br>
-                    <div> <img src="Billeder\stopwatch.png"
-                      width="35px"><span class="ms-1"> 0.2h </span>
-                    </div>
-                  </div>
-                </div>
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center d-flex align-items-center h-100">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+      <div class="card" style="color: #4B515D; border-radius: 35px;">
+        <div class="card-body p-4">
+          <div class="d-flex">
+            <h6 class="flex-grow-1">BY-NAVN-(Copenhagen)</h6>
+              <h6>DATETIME NU-(15:07)</h6>
+          </div>
+            <div class="d-flex flex-column text-center mt-5 mb-4">
+              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 0 kWh </h6>
+              <span class="small" style="color: #868B94">Phillips HUe</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="flex-grow-1" style="font-size: 1rem;">
                 <br>
-                <div class="col-xs-8 col-xs-offset-2 well">
-                  <table class="table table-scroll table-striped">
-                      <thead>
-                          <tr>
-                              <th>#</th>
-                              <th>Tændingstid</th>
-                              <th>Varighed</th>
-                              
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr>
-                              <td>1</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>2</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>4</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>5</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>6</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>7</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>8</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                          </tr>
-                          <tr>
-                              <td>9</td>
-                              <td>12:46</td>
-                              <td>10 s</td>
-                            </tr>
-                      </tbody>
-                  </table>
+                <div> 
+                  <img src="Billeder\stopwatch.png" width="35px">
+                  <span class="ms-1"> 0.2h </span>
                 </div>
               </div>
             </div>
-    
-          </div>
-        </div>   
-      </div>
-        <div>
-      
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-8 col-lg-6 col-xl-4">
-      
-              <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
-                <div class="form-outline">
-                  <input type="name" id="form1" class="form-control" placeholder="By"/>
-                </div>
-                <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Søg</button>
-              </div>
-              <br>
-              
+            <br>
+            <div class="col-xs-8 col-xs-offset-2 well">
+              <table class="table table-scroll table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Tændingstid</th>
+                    <th>Varighed</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>12:46</td>
+                    <td>10 s</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
         </div>
+      </div>
+    </div>
+  </div>   
+</div>
+        
 
-        <div class="container py-5 h-100">
+<div>
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-8 col-lg-6 col-xl-4">
+      <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
+        <div class="form-outline">
+          <input type="text" id="form1" class="form-control" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo"/>
+        </div>
+        <button class="btn btn-primary" @click="GetWeatherInfo(searchedCityName)">Søg</button>
+      </div>
+      <br>
+    </div>
+    
+    <div class="container py-5 h-100">
         
           <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-8 col-lg-6 col-xl-4">
@@ -164,32 +92,34 @@
                 <div class="card-body p-4">
       
                   <div class="d-flex">
-                    <h6 class="flex-grow-1">BY</h6>
-                    <h6>00:00</h6>
+                    <h6 class="flex-grow-1">{{city}}, {{country}}</h6>
+                    <h6>{{currentTime}}</h6>
                   </div>
       
                   <div class="d-flex flex-column text-center mt-5 mb-4">
-                    <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 13°C </h6>
-                    <span class="small" style="color: #868B94">Stormy</span>
+                    <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> {{temp}}°C </h6>
+                    <span class="small" style="color: #868B94">{{weatherDescription}}</span>
                   </div>
       
                   <div class="d-flex align-items-center">
                     <div class="flex-grow-1" style="font-size: 1rem;">
-                      <div><img src="Billeder\Sunrise.png"
-                        width="30px"> <span class="ms-1"> 8:14
-                        </span></div>
-                        <br>
-                      <div><img src="Billeder\Sunset.png"
-                        width="30px"> <span class="ms-1"> 16:04 </span>
+                      <div>
+                        <img :src="sunriseImagePath" width="30px">
+                        <span class="ms-1"> {{sunrise}}</span>
                       </div>
                       <br>
-                      <div><img src="Billeder\binoculars.png"
-                        width="30px"> <span class="ms-1"> 0.2h </span>
+                      <div>
+                        <img :src="sunsetImagePath" width="30px"> 
+                        <span class="ms-1"> {{sunset}} </span>
+                      </div>
+                      <br>
+                      <div>
+                        <img src="Billeder\binoculars.png" width="30px">
+                        <span class="ms-1"> {{visibility}} km </span>
                       </div>
                     </div>
                     <div>
-                      <img src="Billeder\moon.png"
-                        width="100px">
+                      <img src="Billeder\moon.png" width="100px">
                     </div>
                   </div>
                 </div>
@@ -198,38 +128,8 @@
           </div>
         </div>
       </div>
-       
-
-
-
-
-    <h1>Lamps</h1>
-    
-<div id="app"> 
-
-          <button class="btn btn-warning" v-on:click="cleanList">Clean the list</button>
-          <br>
-          <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
-          <input v-model="getLampId" placeholder="Lamp Id" type="number">
-          <br>
-          <button class="btn btn-primary" v-on:click="getAlllamps">Get All</button>
-          
-          <div v-if="error" style="color: red">error: {{error}}</div>
-          <div style="color: green">Statuscode: {{statuscode}}</div>
-          <h1>Lamp List</h1>
-  
-          <ul v-if="Lamplist.length > 0">
-              <li v-for="Lamp in Lamplist" v-bind:key="Lamp.id">
-                  id {{Lamp.id}}
-              </li>
-          </ul>       
-          <div v-else style="font-style: italic;">No Lamps to show</div>
-      </div>
-  
-   
-    <script src="js/index.js"></script>  
-        
-        
+</div>
+  <script src="js/index.js"></script>      
 </body>
 
 </html>
