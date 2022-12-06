@@ -14,11 +14,34 @@
         button {
             margin: 5px 5px 5px 5px
         }
+        
+        .well {
+    background: none;
+    height: 320px;
+}
+
+.table-scroll tbody {
+    position: absolute;
+    overflow-y: scroll;
+    height: 250px;
+}
+
+.table-scroll tr {
+    width: 100%;
+    table-layout: fixed;
+    display: inline-table;
+}
+
+.table-scroll thead > tr > th {
+    border: none;
+}
     </style>
 
 
 </head>
 <br>
+
+
 <body style="background-color: lightblue;">
   <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
     <div class="form-outline">
@@ -47,24 +70,80 @@
     
                 <div class="d-flex align-items-center">
                   <div class="flex-grow-1" style="font-size: 1rem;">
-                    <div> <img src="\Billeder\sunrise.png"
-                      width="35px"> <span class="ms-1"> 7:05</span>
-                    </div>
-                    <br>
-                    <div> <img src="\Billeder\sunset.png"
-                      width="38px"><span class="ms-1"> 16:13 </span>
-                    </div>
                     <br>
                     <div> <img src="Billeder\stopwatch.png"
                       width="35px"><span class="ms-1"> 0.2h </span>
                     </div>
                   </div>
-                  <div>
-                      <img src="\Billeder\sun.png"
-                        width="100px">
-                    </div>
                 </div>
-    
+                <br>
+                <div class="col-xs-8 col-xs-offset-2 well">
+                  <table class="table table-scroll table-striped">
+                      <thead>
+                          <tr>
+                              <th>#</th>
+                              <th>Tændingstid</th>
+                              <th>Varighed</th>
+                              
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>1</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>2</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                             
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>4</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>5</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>6</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>7</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>8</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                              
+                          </tr>
+                          <tr>
+                              <td>9</td>
+                              <td>12:46</td>
+                              <td>10 s</td>
+                            </tr>
+                      </tbody>
+                  </table>
+                </div>
               </div>
             </div>
     
