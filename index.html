@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <title>Gadelampen - Vue3 JS + REST services</title>
@@ -21,7 +21,7 @@
     <label for="devices">Choose a device:</label>
 
 <select name="devices" id="devices" v-model="specifikChosenDevice">
-  <option :value="d.deviceName" v-for="d in deviceList">{{d.deviceName}}</option>
+  <option :value="d" v-for="d in deviceList">{{d}}</option>
 </select>
 <button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
 </div>
@@ -32,12 +32,12 @@
       <div class="card" style="color: #4B515D; border-radius: 35px;">
         <div class="card-body p-4">
           <div class="d-flex">
-            <h6 class="flex-grow-1">BY-NAVN-(Copenhagen)</h6>
-            <h6>DATETIME NU-(15:07)</h6>
+            <h6 class="flex-grow-1">{{specifikDeviceCity}}, {{specifikDeviceCountry}}</h6>
+            <h6>Watt: {{specifikDeviceWatt}}</h6>
           </div>
             <div class="d-flex flex-column text-center mt-5 mb-4">
-              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 0 kWh </h6>
-              <span class="small" style="color: #868B94">Phillips HUe</span>
+              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{specifikDevicekWh}}</h6>
+              <span class="small" style="color: #868B94">{{specifikDeviceName}}</span>
             </div>
             <div class="d-flex align-items-center">
               <div class="flex-grow-1" style="font-size: 1rem;">
@@ -53,16 +53,14 @@
               <table class="table table-scroll table-striped">
                 <thead>
                   <tr>
-                    <th>#</th>
                     <th>Tændingstid</th>
                     <th>Varighed</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>12:46</td>
-                    <td>10 s</td>
+                  <tr v-for="d in specifikDeviceInfo">
+                    <td>{{d}}</td>
+                    <td v-model="specifikDeviceTurnOnDuration">{{specifikDeviceTurnOnDuration}}</td>
                   </tr>
                 </tbody>
               </table>

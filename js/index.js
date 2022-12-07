@@ -25,9 +25,16 @@ Vue.createApp({
            // Vores eget API kald data
            specifikChosenDevice: "",
            deviceList: [],
-           specifikDeviceInfo: []
+           specifikDeviceInfo: [],
+           specifikDeviceName: "",
+           specifikDeviceWatt: 0,
+           specifikDeviceCity: "",
+           specifikDeviceCountry: "",
+           specifikDeviceTurnOnDuration: 0,
+           specifikDevicekWH: 0,
+
         }
-    },  
+    }, 
     methods: {
         GetWeatherInfo(searchedCityName){
             console.log("In GetWeatherInfo method")
@@ -66,21 +73,34 @@ Vue.createApp({
             axios.get(lampApiURL)
             .then(response => {
                 console.log("Status kode:" + response.status)
-                console.log(response.data)
-                this.specifikDeviceInfo = response.data
-                console.log(specifikDeviceInfo)
+                this.specifikDeviceInfo = []
+                this.specifikDeviceName = response.data[0].deviceName;
+                this.specifikDeviceWatt = response.data[0].watt
+                this.specifikDeviceCity = response.data[0].city
+                this.specifikDeviceCountry = response.data[0].country
+                this.specifikDeviceTurnOnDuration = response.data[0].turnOnDuration
+                for (let index = 0; index < response.data.length; index++) {
+                    const turnedOn = response.data[index].turnedOn;
+                    this.specifikDeviceInfo.push(turnedOn)
+                }
+                this.specifikDevicekWH = (this.specifikDeviceWatt / 1000) * (this.specifikDeviceTurnOnDuration * this.specifikDeviceInfo.length)
+                console.log(this.specifikDeviceInfo)
             })
             .catch(error = (ex) => {
                 console.log("Fejlkode:" + ex.message)
             })
         },
         GetDeviceNames(){
-            console.log("I GetDeviceNames")
+            console.log("In GetDeviceNames")
             axios.get(lampeBaseURL)
             .then(response => {
                 console.log(response.status)
-                console.log(response.data)
-                this.deviceList = response.data
+                for (let index = 0; index < response.data.length; index++) {
+                    const element = response.data[index].deviceName;
+                    if (!this.deviceList.includes(element)) {
+                        this.deviceList.push(element)   
+                    }
+                }
                 console.log(this.deviceList)
             })
             .catch(error = (ex) => {
