@@ -36,15 +36,15 @@
             <h6>Watt: {{specifikDeviceWatt}}</h6>
           </div>
             <div class="d-flex flex-column text-center mt-5 mb-4">
-              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{specifikDevicekWh}}</h6>
-              <span class="small" style="color: #868B94">{{specifikDeviceName}}</span>
+              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{specifikDevicekWh}} kWh</h6>
+              <span class="medium" style="color: #868B94">{{specifikDeviceName}}</span>
             </div>
             <div class="d-flex align-items-center">
               <div class="flex-grow-1" style="font-size: 1rem;">
                 <br>
                 <div> 
                   <img :src="stopwatchImagePath" width="35">
-                  <span class="ms-1"> 0.2h </span>
+                  <span class="ms-1"> {{specifikDeviceTotalTime}} </span>
                 </div>
               </div>
             </div>
@@ -60,7 +60,7 @@
                 <tbody>
                   <tr v-for="d in specifikDeviceInfo">
                     <td>{{d}}</td>
-                    <td v-model="specifikDeviceTurnOnDuration">{{specifikDeviceTurnOnDuration}}</td>
+                    <td>{{specifikDeviceTurnOnDuration}} sek</td>
                   </tr>
                 </tbody>
               </table>
