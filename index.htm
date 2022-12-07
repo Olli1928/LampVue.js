@@ -9,18 +9,21 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script> -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
-    <title>Lamps, Vue3 + REST</title>
-
-
+    <title>Gadelampen - Vue3 JS + REST services</title>
 </head>
 <br>
 <body style="background-color: lightblue;">
 <div id="app">
 <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
   <div class="form-outline">
-    <input type="name" id="form1" class="form-control" placeholder="Devicenavn"/>
   </div>
-    <button class="btn btn-primary" v-on:click="getByLampId(getLampId)">Get By LampId</button>
+    <button class="btn btn-primary" @click="GetDeviceNames">Se liste af devices</button>
+    <label for="devices">Choose a device:</label>
+
+<select name="devices" id="devices" v-model="specifikChosenDevice">
+  <option :value="" v-for="d in deviceList">{{d.deviceName}}</option>
+</select>
+<button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
 </div>
 
 <div class="container py-5 h-100">
@@ -30,7 +33,7 @@
         <div class="card-body p-4">
           <div class="d-flex">
             <h6 class="flex-grow-1">BY-NAVN-(Copenhagen)</h6>
-              <h6>DATETIME NU-(15:07)</h6>
+            <h6>DATETIME NU-(15:07)</h6>
           </div>
             <div class="d-flex flex-column text-center mt-5 mb-4">
               <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> 0 kWh </h6>
@@ -86,53 +89,49 @@
     <h6>{{error}}</h6>
     
     <div class="container py-5 h-100" v-show="showWeatherBox">
-        
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-8 col-lg-6 col-xl-4">
-      
-              <div class="card" style="color: #4B515D; border-radius: 35px;">
-                <div class="card-body p-4">
-      
-                  <div class="d-flex">
-                    <h6 class="flex-grow-1">{{city}}, {{country}}</h6>
-                    <h6>{{currentTime}}</h6>
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+          <div class="card" style="color: #4B515D; border-radius: 35px;">
+            <div class="card-body p-4">
+              <div class="d-flex">
+                <h6 class="flex-grow-1">{{city}}, {{country}}</h6>
+                <h6>{{currentTime}}</h6>
+              </div>
+              <div class="d-flex flex-column text-center mt-5 mb-4">
+                <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> {{temp}}°C </h6>
+                <span class="small" style="color: #868B94">{{weatherDescription}}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="flex-grow-1" style="font-size: 1rem;">
+                  <div>
+                    <img :src="sunriseImagePath" width="30">
+                    <span class="ms-1"> {{sunrise}}</span>
                   </div>
-      
-                  <div class="d-flex flex-column text-center mt-5 mb-4">
-                    <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;"> {{temp}}°C </h6>
-                    <span class="small" style="color: #868B94">{{weatherDescription}}</span>
+                    <br>
+                  <div>
+                    <img :src="sunsetImagePath" alt="" width="33">
+                    <span class="ms-1"> {{sunset}} </span>
                   </div>
-      
-                  <div class="d-flex align-items-center">
-                    <div class="flex-grow-1" style="font-size: 1rem;">
-                      <div>
-                        <img :src="sunriseImagePath" width="30">
-                        <span class="ms-1"> {{sunrise}}</span>
-                      </div>
-                      <br>
-                      <div>
-                        <img :src="sunsetImagePath" alt="" width="33">
-                        <span class="ms-1"> {{sunset}} </span>
-                      </div>
-                      <br>
-                      <div>
-                        <img :src="binoImagePath" width="30">
-                        <span class="ms-1"> {{visibility}} km </span>
-                      </div>
-                    </div>
-                    <div>
-                      <img v-if="sunrise < currentTime && currentTime < sunset" :src="sunImagePath" width="100">
-                      <img v-else :src="moonImagePath" width="100">
-                    </div>
+                    <br>
+                  <div>
+                    <img :src="binoImagePath" width="30">
+                    <span class="ms-1"> {{visibility}} km </span>
                   </div>
                 </div>
+              <div>
+                <img v-if="sunrise < currentTime && currentTime < sunset" :src="sunImagePath" width="100">
+                <img v-else :src="moonImagePath" width="100">
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 </div>
-  <script src="js/index.js"></script>      
-</body>
+</div>
 
+<script src="js/index.js"></script>      
+
+</body>
 </html>

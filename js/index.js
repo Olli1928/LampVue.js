@@ -1,17 +1,18 @@
 
-const lampeURL = "https://lamprestapi.azurewebsites.net/api/Lamp"
+const lampeBaseURL = 'https://gadelampenrest.azurewebsites.net/api/Lamps/'
 Vue.createApp({
     data() {
         return {
-           city: "",
-           country: "",
-           currentTime: "",
+            // Tredjeparts API kald data
+           city: null,
+           country: null,
+           currentTime: null,
            temp: 0,
-           sunrise: "",
-           sunset: "",
+           sunrise: null,
+           sunset: null,
            visibility: 0,
-           weatherDescription: "",
-           searchedCityName: "",
+           weatherDescription: null,
+           searchedCityName: null,
            error: null,
            sunriseImagePath: 'Billeder/Sunrise.png',
            sunsetImagePath: 'Billeder/Sunset.png',
@@ -19,18 +20,22 @@ Vue.createApp({
            moonImagePath:'Billeder/moon.png',
            sunImagePath:'Billeder/sun.png',
            stopwatchImagePath: 'Billeder/stopwatch.png',
-           showWeatherBox: false
+           showWeatherBox: false,
 
+           // Vores eget API kald data
+           specifikChosenDevice: "",
+           deviceList: [],
+           specifikDeviceInfo: []
         }
     },  
     methods: {
         GetWeatherInfo(searchedCityName){
             console.log("In GetWeatherInfo method")
-            searchedURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCityName + "&appid=08ee16c2dc794824ee9b4d2f71a7091d"
-            console.log(searchedURL)
-            axios.get(searchedURL)
+            weatherApiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchedCityName + "&appid=08ee16c2dc794824ee9b4d2f71a7091d"
+            console.log(weatherApiURL)
+            axios.get(weatherApiURL)
             .then(response => {
-                console.log("Status kode:" + response.status);
+                console.log("Status kode:" + response.status)
                 this.city = response.data.name
                 this.country = response.data.sys.country
                 this.currentTime = new Date((response.data.dt + response.data.timezone) * 1000).toUTCString().slice(17,22)
@@ -53,7 +58,34 @@ Vue.createApp({
                 }
                 console.log("Fejlkode:" + ex.message)
             })
+        },
+        GetDeviceInfo(specifikChosenDevice){
+            console.log("In GetDeviceInfo method")
+            lampApiURL = lampeBaseURL+"SearchLampInfoByDevicename/"+specifikChosenDevice
+            console.log(lampApiURL)
+            axios.get(lampApiURL)
+            .then(response => {
+                console.log("Status kode:" + response.status)
+                console.log(response.data)
+                this.specifikDeviceInfo = response.data
+                console.log(specifikDeviceInfo)
+            })
+            .catch(error = (ex) => {
+                console.log("Fejlkode:" + ex.message)
+            })
+        },
+        GetDeviceNames(){
+            console.log("I GetDeviceNames")
+            axios.get(lampeBaseURL)
+            .then(response => {
+                console.log(response.status)
+                console.log(response.data)
+                this.deviceList = response.data
+                console.log(this.deviceList)
+            })
+            .catch(error = (ex) => {
+                console.log(ex.message)
+            })
         }
-        
     }      
 }).mount("#app")
