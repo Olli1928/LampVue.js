@@ -21,7 +21,7 @@
     <label for="devices">Choose a device:</label>
 
 <select name="devices" id="devices" v-model="specifikChosenDevice">
-  <option :value="" v-for="d in deviceList">{{d.deviceName}}</option>
+  <option :value="d.deviceName" v-for="d in deviceList">{{d.deviceName}}</option>
 </select>
 <button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
 </div>
