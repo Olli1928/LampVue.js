@@ -33,6 +33,7 @@ Vue.createApp({
            specifikDeviceTurnOnDuration: 0,
            specifikDevicekWh: 0,
            specifikDeviceTotalTime: 0,
+           showLampBox: false,
 
         }
     }, 
@@ -88,9 +89,11 @@ Vue.createApp({
                 console.log(this.specifikDeviceInfo)
                 this.CalculateTotalTime()
                 this.CalculatekWh()
+                this.showLampBox = true
             })
             .catch(error = (ex) => {
                 console.log("Fejlkode:" + ex.message)
+                this.showLampBox = false
             })
         },
         GetDeviceNames(){
