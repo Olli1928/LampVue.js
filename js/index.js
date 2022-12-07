@@ -1,6 +1,9 @@
 
 const lampeBaseURL = 'https://gadelampenrest.azurewebsites.net/api/Lamps/'
 Vue.createApp({
+    created(){
+        this.GetDeviceNames()
+    },
     data() {
         return {
             // Tredjeparts API kald data
@@ -31,7 +34,9 @@ Vue.createApp({
            specifikDeviceCity: "",
            specifikDeviceCountry: "",
            specifikDeviceTurnOnDuration: 0,
-           specifikDevicekWH: 0,
+           specifikDevicekWh: 0,
+           specifikDeviceTotalTime: 0,
+           showLampBox: false,
 
         }
     }, 
@@ -81,13 +86,17 @@ Vue.createApp({
                 this.specifikDeviceTurnOnDuration = response.data[0].turnOnDuration
                 for (let index = 0; index < response.data.length; index++) {
                     const turnedOn = response.data[index].turnedOn;
-                    this.specifikDeviceInfo.push(turnedOn)
+                    let turnedOnTimeInDate = new Date(turnedOn).toString().slice(0,24)
+                    this.specifikDeviceInfo.push(turnedOnTimeInDate)
                 }
-                this.specifikDevicekWH = (this.specifikDeviceWatt / 1000) * (this.specifikDeviceTurnOnDuration * this.specifikDeviceInfo.length)
                 console.log(this.specifikDeviceInfo)
+                this.CalculateTotalTime()
+                this.CalculatekWh()
+                this.showLampBox = true
             })
             .catch(error = (ex) => {
                 console.log("Fejlkode:" + ex.message)
+                this.showLampBox = false
             })
         },
         GetDeviceNames(){
@@ -106,6 +115,12 @@ Vue.createApp({
             .catch(error = (ex) => {
                 console.log(ex.message)
             })
+        },
+        CalculatekWh(){
+            this.specifikDevicekWh = Math.round((this.specifikDeviceWatt / 1000) * (this.specifikDeviceTurnOnDuration * this.specifikDeviceInfo.length) * 100) / 100
+        },
+        CalculateTotalTime(){
+            this.specifikDeviceTotalTime = new Date((this.specifikDeviceTurnOnDuration * this.specifikDeviceInfo.length) * 1000).toISOString().substr(11, 8)
         }
     }      
 }).mount("#app")

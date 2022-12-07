@@ -17,7 +17,6 @@
 <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
   <div class="form-outline">
   </div>
-    <button class="btn btn-primary" @click="GetDeviceNames">Se liste af devices</button>
     <label for="devices">Choose a device:</label>
 
 <select name="devices" id="devices" v-model="specifikChosenDevice">
@@ -26,25 +25,25 @@
 <button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
 </div>
 
-<div class="container py-5 h-100">
+<div class="container py-5 h-100" v-show="showLampBox">
   <div class="row d-flex justify-content-center d-flex align-items-center h-100">
     <div class="col-md-8 col-lg-6 col-xl-4">
       <div class="card" style="color: #4B515D; border-radius: 35px;">
         <div class="card-body p-4">
           <div class="d-flex">
             <h6 class="flex-grow-1">{{specifikDeviceCity}}, {{specifikDeviceCountry}}</h6>
-            <h6>Watt: {{specifikDeviceWatt}}</h6>
+            <h6>{{specifikDeviceWatt}}W</h6>
           </div>
             <div class="d-flex flex-column text-center mt-5 mb-4">
-              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{specifikDevicekWh}}</h6>
-              <span class="small" style="color: #868B94">{{specifikDeviceName}}</span>
+              <h6 class="display-4 mb-0 font-weight-bold" style="color: #1C2331;">{{specifikDevicekWh}} kWh</h6>
+              <span class="medium" style="color: #868B94">{{specifikDeviceName}}</span>
             </div>
             <div class="d-flex align-items-center">
               <div class="flex-grow-1" style="font-size: 1rem;">
                 <br>
                 <div> 
                   <img :src="stopwatchImagePath" width="35">
-                  <span class="ms-1"> 0.2h </span>
+                  <span class="ms-1"> {{specifikDeviceTotalTime}} </span>
                 </div>
               </div>
             </div>
@@ -60,7 +59,7 @@
                 <tbody>
                   <tr v-for="d in specifikDeviceInfo">
                     <td>{{d}}</td>
-                    <td v-model="specifikDeviceTurnOnDuration">{{specifikDeviceTurnOnDuration}}</td>
+                    <td>{{specifikDeviceTurnOnDuration}} sek</td>
                   </tr>
                 </tbody>
               </table>
@@ -73,10 +72,11 @@
         
     
       <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
-        <div class="form-outline">
-          <input type="text" id="form1" class="form-control" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo"/>
+        <div class="searchbar">
+          <input type="text" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo"/>
+          <li class="fas fa-search"></li>
+          <button class="btn btn-primary" @click="GetWeatherInfo(searchedCityName)"></button>
         </div>
-        <button class="btn btn-primary" @click="GetWeatherInfo(searchedCityName)">Søg</button>
       </div>
       <br>
     
