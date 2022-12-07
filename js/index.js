@@ -1,6 +1,9 @@
 
 const lampeBaseURL = 'https://gadelampenrest.azurewebsites.net/api/Lamps/'
 Vue.createApp({
+    created(){
+        this.GetDeviceNames()
+    },
     data() {
         return {
             // Tredjeparts API kald data
