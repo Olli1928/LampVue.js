@@ -9,9 +9,10 @@ button {
 }
 
 .table-scroll tbody {
-    position: absolute;
-    overflow-y: scroll;
+    position:absolute;
+    overflow-y: auto;
     height: 250px;
+    padding: 15px;
 }
 
 .table-scroll tr {
