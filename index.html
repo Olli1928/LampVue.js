@@ -16,13 +16,13 @@
 <div id="app">
 <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
   <div class="form-outline">
-  </div>
+    <h2 class="justify-content-center d-flex">Find info på en lampe</h2>
     <label for="devices">Choose a device:</label>
-
-<select name="devices" id="devices" v-model="specifikChosenDevice">
-  <option :value="d" v-for="d in deviceList">{{d}}</option>
-</select>
-<button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
+    <select name="devices" id="devices" v-model="specifikChosenDevice">
+      <option :value="d" v-for="d in deviceList">{{d}}</option>
+    </select>
+    <button class="btn btn-primary" @click="GetDeviceInfo(specifikChosenDevice)">Find device info</button>
+  </div>
 </div>
 
 <div class="container py-5 h-100" v-show="showLampBox">
@@ -71,6 +71,7 @@
 </div>
         
     
+      <h2 class="justify-content-center d-flex">Find vejrinfo på en specifik by</h2>
       <div class="input-group row d-flex justify-content-center d-flex align-items-center h-100">
         <div class="searchbar">
           <input type="text" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo"/>

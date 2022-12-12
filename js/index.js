@@ -1,5 +1,6 @@
 
 const lampeBaseURL = 'https://gadelampenrest.azurewebsites.net/api/Lamps/'
+const energyApiURL = 'https://api.statbank.dk/v1/data/ENEGEO/JSONSTAT?KOMK=265&Tid=2012&Tid=2014&Tid=2016&Tid=2018&Tid=2020'
 Vue.createApp({
     created(){
         this.GetDeviceNames()
@@ -37,6 +38,8 @@ Vue.createApp({
            specifikDevicekWh: 0,
            specifikDeviceTotalTime: 0,
            showLampBox: false,
+
+           testArray: []
 
         }
     }, 
