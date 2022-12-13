@@ -6,6 +6,19 @@ Vue.createApp({
     created(){
         this.GetDeviceNames()
     },
+    mounted(){
+        const pages = document.querySelectorAll(".page");
+        const translateAmount = 100; 
+        let translate = 0;
+
+        slide = (direction) => {
+            direction === "next" ? translate -= translateAmount : translate += translateAmount;
+
+            pages.forEach(
+            pages => (pages.style.transform = `translateX(${translate}%)`)
+            );
+        }
+    },
     data() {
         return {
             // Tredjeparts API kald data
@@ -39,6 +52,7 @@ Vue.createApp({
            specifikDevicekWh: 0,
            specifikDeviceTotalTime: 0,
            showLampBox: false,
+           index: 0,
 
         }
     }, 
