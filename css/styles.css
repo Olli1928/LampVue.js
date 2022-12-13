@@ -11,12 +11,12 @@ button{
   background-color: transparent;
   color: white;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 20px;
   transition: 0.1s;
 }
 
 button:hover{
-  transform: scale(1.05);
+  transform: scale(1.15);
 }
 
 .container1{
