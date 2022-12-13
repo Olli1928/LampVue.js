@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vue@next"></script>
     <script src="https://kit.fontawesome.com/49b84af18a.js" crossorigin="anonymous"></script>
@@ -94,7 +95,7 @@
               <input type="text" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo" @keyup.enter="GetWeatherInfo(searchedCityName)"/>
               <i class="fa-solid fa-magnifying-glass" style="color:black"></i>
             </div>
-            <h6>{{error}}</h6>
+            <h6 id="errorMessage">{{error}}</h6>
           </div>
   
           <div class="card-columns mx-auto d-flex justify-content-center col-12">
@@ -144,6 +145,7 @@
           <button onClick="slide('prev')" style="position:fixed; bottom:50%; left: 30px;"><i class="fa-solid fa-arrow-left-long"></i></button>
         </div>
       </div>
+
     </div>
   </div>
 </div>

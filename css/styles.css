@@ -1,3 +1,7 @@
+*{
+    font-family: 'Montserrat';
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -54,9 +58,6 @@ button:hover{
 .two{
     background-color: #0093E9;
     background-image: linear-gradient(148deg, #0093E9 0%, #80D0C7 33%, #b9ffff 66%, #ffffff 100%);
-
-
-
 }
 
 
@@ -85,8 +86,8 @@ h2 {
     text-align: center;
 }
 
-h6 {
-    text-align: center;
+#errorMessage{
+    font-weight:bold;
 }
 
 .well {
@@ -120,7 +121,7 @@ h6 {
     display: inline-flex;
     align-items: center;
     transition: 0.8s;
-    box-shadow: 0 0 25px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.682);
 }
     .searchbar:hover > input {
         width: 350px;
@@ -158,7 +159,7 @@ h6 {
     padding: 20px;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    box-shadow: 0 0 5px rgb(0, 0, 0, .4);
     display: flex;
 }
 
