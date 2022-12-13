@@ -82,7 +82,7 @@
         </div>
         </div>    
         <div>
-          <button onClick="slide('next')" >Next</button>
+          <button onClick="slide('next')" style="position:fixed; bottom:50%; right:30px" >Next</button>
         </div>
       </div>
       <div class="page two">
@@ -92,7 +92,7 @@
             <h2>Vejrinfo</h2>
             <div class="searchbar">
               <input type="text" v-model="searchedCityName" placeholder="Søg på bynavn for vejrinfo" @keyup.enter="GetWeatherInfo(searchedCityName)"/>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i class="fas fa-search"></i>
             </div>
             <h6>{{error}}</h6>
           </div>
@@ -137,12 +137,11 @@
                 </div>
               </div>
             </div>
-            <button onClick="slide('prev')">Previous</button>
           </div>
     
         </div>
         <div>
-          
+          <button onClick="slide('prev')" style="position:fixed; bottom:50%; left:30px">Previous</button>
         </div>
       </div>
     </div>
