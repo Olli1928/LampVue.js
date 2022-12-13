@@ -1,6 +1,7 @@
 
 const lampeBaseURL = 'https://gadelampenrest.azurewebsites.net/api/Lamps/'
 const energyApiURL = 'https://api.statbank.dk/v1/data/ENEGEO/JSONSTAT?KOMK=265&Tid=2012&Tid=2014&Tid=2016&Tid=2018&Tid=2020'
+
 Vue.createApp({
     created(){
         this.GetDeviceNames()
@@ -38,8 +39,6 @@ Vue.createApp({
            specifikDevicekWh: 0,
            specifikDeviceTotalTime: 0,
            showLampBox: false,
-
-           testArray: []
 
         }
     }, 
@@ -124,6 +123,20 @@ Vue.createApp({
         },
         CalculateTotalTime(){
             this.specifikDeviceTotalTime = new Date((this.specifikDeviceTurnOnDuration * this.specifikDeviceInfo.length) * 1000).toISOString().substr(11, 8)
+        },
+        CloseDropDown(d){
+            const text = document.getElementById('text');
+            const selectBtn = document.getElementById('select-btn')
+            text.innerHTML = d
+            selectBtn.classList.remove('active');
+        },
+        ToggleActive(){
+            const selectBtn = document.getElementById('select-btn');
+            selectBtn.classList.toggle('active')
+            if (selectBtn.hasAttributes('active')) {
+                this.showLampBox = false
+            }
         }
     }      
-}).mount("#app")
+}
+).mount("#app")

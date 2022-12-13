@@ -1,17 +1,58 @@
+body {
+    background: linear-gradient(45deg, #8460ed, #ff1252);
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+}
 
-button {
-    margin: 5px 5px 5px 5px
+.container-fluid{
+    width: 100%;
+}
+
+
+#col1 {
+    border-right-width: 5px;
+    border-right-color: black;
+    border-right-style:ridge;
+    height:100vh;
+}
+
+#deviceInfoCard{
+    width:60%;
+}
+
+#vejrInfoCard{
+    width:60%;
+}
+
+#vejrOverskrift{
+    text-align: center;
+}
+
+.col {
+    align-content:center;
+    align-items:center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
 }
 
 .well {
     background: none;
-    height: 320px;
+    height: 290px;
 }
 
 .table-scroll tbody {
     position:absolute;
     overflow-y: auto;
-    height: 250px;
+    height: 240px;
     padding: 15px;
 }
 
@@ -44,16 +85,98 @@ button {
         background: transparent;
         border: none;
         outline: none;
-        width: 0px;
+        width: 35px;
         font-weight: 500;
         font-size: 16px;
         transition: 0.8s;
     }
-.fas {
-    color: black;
-}
+
 .searchbar > input[type="text"] {
     outline: none;
     border: none;
     background: transparent;
+}
+
+.select-menu{
+    width: 300px;
+    margin: 20px auto;
+}
+
+.select-menu > .select-btn {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    background: #fff;
+    color: #333;
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,.1);
+    display: flex;
+}
+
+#icon-arrow{
+    font-size: 20px;
+    transition: 1s;
+}
+
+.select-btn.active > #icon-arrow{
+    transform: rotate(180deg);
+}
+
+.list {
+    position: absolute;
+    width: 300px;
+    padding: 0;
+    margin-top: 10px;
+    z-index: 1;
+}
+
+.option {
+    display: flex;
+    align-items:center;
+    width: 100%;
+    height: 35px;
+    background: #fff;
+    padding: 0 16px;
+    cursor: pointer;
+    transform-origin: top;
+    transform: scale(0) translateY(-65px);
+    opacity: 0;
+    margin-bottom: -55px;
+    transition: opacity .5s ease-in-out, 
+    transform .5s ease-in-out, 
+    margin-bottom .5s ease-in-out;
+    transition-delay: calc(.1s * var(--i));
+}
+
+.select-btn.active~.list > .option{
+    transform: scale(1) translateY(0);
+    margin-bottom: 0;
+    transition: opacity 1s ease-in-out,
+    transform .5s ease-in-out, 
+    margin-bottom .2s ease-in-out;
+    transition-delay: calc(.1s * var(--i));
+    opacity: 1;
+}
+
+.option:hover{
+    background: #f2f2f2;
+}
+
+.option:nth-child(1){
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.option:last-child{
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.option-text {
+    font-size: 18px;
+    color: #333;
 }
